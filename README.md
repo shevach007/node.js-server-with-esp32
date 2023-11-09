@@ -11,3 +11,6 @@ https://www.youtube.com/watch?v=5TxF9PQaq4U
 
 ESP32 Dual Core on Arduino IDE including Data Passing and Task Synchronization:
 https://www.youtube.com/watch?v=k_D_Qu0cgu8&list=WL&index=59   
+
+conntact me:
+michaelriabtsev@gmail.com
