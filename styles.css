@@ -1,0 +1,164 @@
+/* form {
+    text-align: center;
+  }
+h2 {
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+ul{
+    display: none;
+}
+
+h2:hover +ul{
+    display: block;
+    color: red;
+}
+input{
+    margin-bottom: 10px;
+}
+body{
+    background-color: aqua;
+} */
+
+/* Apply some basic styling to the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Style the form container */
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style the heading */
+  h2 {
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Style the list of commands */
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  /* Style the input field */
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Style the buttons */
+  button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #0074d9;
+    color: #fff;
+    transition: background-color 0.2s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style the textarea */
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  ul {
+    display: none;
+  }
+  
+  /* When hovering over h2, display the ul */
+  h2:hover + ul {
+    display: block;
+  }
+  .light-bulb {
+    width: 100px;
+    height: 160px;
+    background-color: #f4f4f4;
+    border: 2px solid #ccc;
+    border-radius: 50px;
+    margin: 20px auto;
+    position: relative;
+    transition: background-color 0.5s;
+  }
+  
+  .light-bulb:before {
+    content: "";
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-color: #f4f4f4;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 43px;
+  }
+  
+  .light-bulb:after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 5px;
+    background-color: #f4f4f4;
+    position: absolute;
+    top: 77px;
+    left: 30px;
+    transform: rotate(-45deg);
+    transform-origin: 50% 50%;
+  }
+  
+  .light-bulb.on {
+    background-color: yellow;
+    animation: glow 0.5s infinite alternate;
+  }
+  
+  /* @keyframes glow {
+    0% {
+      box-shadow: 0 0 10px yellow;
+    }
+    100% {
+      box-shadow: 0 0 20px yellow, 0 0 30px yellow, 0 0 40px yellow;
+    }
+  } */
+  
+  .light-bulb.off {
+    background-color: #ccc;
+
+  }
+@keyframes blink {
+  0%, 100% {
+    background-color: yellow;
+    opacity: 1;
+  }
+}
+
+.blink {
+  animation: blink 0.5s infinite;
+}

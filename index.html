@@ -1,0 +1,115 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <form><h2>type here a command</h2>
+        <ul>
+            <li>1 for turning the led on</li>
+            <li>2 for turning the led off</li>
+            <li>3 to blink the led</li>
+        </ul>
+        <div class="light-bulb" id="bulb"></div>
+        <input type="text" id="input" /><br>
+        <button id="ledOn">Turn on the Light</button>
+        <button id="ledOff">Turn off the Light</button>
+        <button id="post">Post command</button>
+        <button id="get">Get status</button><br><br>
+        <textarea id="textarea" cols="65" rows="10"></textarea>
+    </form>
+
+
+    <script>
+let blinkInterval; // Declare a variable to store the interval ID
+
+        const getBtn = document.getElementById('get')
+        const postBtn = document.getElementById('post')
+        const input = document.getElementById('input')
+        const textArea = document.getElementById('textarea')
+        const ledOn = document.getElementById('ledOn')
+        const ledOff = document.getElementById('ledOff')
+        const bulb = document.getElementById('bulb');
+
+
+        getBtn.addEventListener('click', getInfo)
+        postBtn.addEventListener('click', postInfo)
+        ledOn.addEventListener('click', sendLedOn)
+        ledOff.addEventListener('click', sendLedOff)
+
+
+        const baseUrl = 'http://localhost:3000/'
+        async function getInfo(e) { //send requests for information from the front-end (browser) to the back-end (node.js server)
+            e.preventDefault()
+            const res = await fetch(baseUrl + 'info/user clicked Get status', //requesting data from the server, getting the response from the server by 'GET' method
+            {
+                method: 'GET'
+            })
+            const data = await res.json() // get the respose from the server as a json
+            textArea.value = data.info // get the actual data by refrencing the key: 'info' and displaying it in the text area
+        }
+
+        async function postInfo(e){ //send data (button status, text ...) from the front-end to the back-end
+            e.preventDefault()
+            clearInterval(blinkInterval);
+
+            if(input.value == '') {return}
+         
+            if(input.value == '1'){
+                bulb.classList.add('on');
+                bulb.classList.remove('off');
+            }
+            if(input.value == '2'){
+                bulb.classList.add('off');
+                bulb.classList.remove('on');
+            }
+            if(input.value == '3'){
+                blinkInterval = setInterval(() => {
+                 bulb.classList.toggle('blink');
+                }, 500);
+
+            }
+            const res = await fetch(baseUrl, //requesting data from the server, getting the response from the server by 'GET' method
+            {
+                method: 'POST', 
+                headers:{
+                    "Content-Type":'application/json'
+                },
+                body: JSON.stringify({parcel: input.value})
+            })
+        }
+
+        async function sendLedOn(e) {
+            e.preventDefault()
+            bulb.classList.add('on');
+            bulb.classList.remove('off');
+
+            const res = await fetch(baseUrl, //requesting data from the server, getting the response from the server by 'GET' method
+            {
+                method: 'POST', 
+                headers:{
+                    "Content-Type":'application/json'
+                },
+                body: JSON.stringify({parcel: '1'}) // turn on the led in arduino
+            })
+        }
+
+        async function sendLedOff(e) {
+            e.preventDefault()
+            bulb.classList.add('off');
+            bulb.classList.remove('on');
+            const res = await fetch(baseUrl, //requesting data from the server, getting the response from the server by 'GET' method
+            {
+                method: 'POST', 
+                headers:{
+                    "Content-Type":'application/json'
+                },
+                body: JSON.stringify({parcel: '2'}) // turn off the led in arduino
+            })
+        }
+    </script>
+</body>
+</html>
